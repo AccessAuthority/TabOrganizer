@@ -29,9 +29,24 @@ function displayTabs(groupedTabs) {
         groupedTabs[domain].forEach(tab => {
             const tabLink = document.createElement('a');
             tabLink.href = tab.url;
-            tabLink.target = '_blank';
+            tabLink.target = '_blank'; // Open in a new tab
             tabLink.textContent = tab.title;
             tabLink.classList.add('d-block');
+
+            // Add click event to check if the tab is already open
+            tabLink.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default action
+                chrome.tabs.query({ url: tab.url }, (existingTabs) => {
+                    if (existingTabs.length > 0) {
+                        // Focus on the existing tab if it's already open
+                        chrome.tabs.update(existingTabs[0].id, { active: true });
+                    } else {
+                        // If not open, create a new tab
+                        chrome.tabs.create({ url: tab.url });
+                    }
+                });
+            });
+
             domainDiv.appendChild(tabLink);
         });
 
