@@ -1,0 +1,44 @@
+:root {
+    --background-color: #ffffff; /* Light mode background */
+    --text-color: #000000; /* Light mode text color */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #121212; /* Dark mode background */
+        --text-color: #ffffff; /* Dark mode text color */
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.domain-group {
+    margin-bottom: 20px;
+}
+
+/* Additional styles for links and buttons */
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    background-color: #007bff; /* Button color */
+    color: #ffffff; /* Button text color */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Button hover color */
+}
+.text-muted{
+      font-size: 12px;
+}
